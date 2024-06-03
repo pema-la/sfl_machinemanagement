@@ -19,7 +19,9 @@ export default function DemoPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const labTypesResponse = await axios.get("api/labtype");
+        const labTypesResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/labtype"
+        );
         const labTypesData = labTypesResponse.data.labtypes.map(
           (labType) => labType.name
         );
@@ -29,7 +31,9 @@ export default function DemoPage() {
         if (sortedLabTypes.length > 0) {
           setActiveTab(sortedLabTypes[0]);
         }
-        const machinesResponse = await axios.get("api/machines");
+        const machinesResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/machines"
+        );
         const machinesData = machinesResponse.data.machines.map(
           (machine, index) => ({
             ...machine,

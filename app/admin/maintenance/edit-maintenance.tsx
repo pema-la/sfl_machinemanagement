@@ -100,8 +100,10 @@ export function EditMaintenance({
     async function fetchData() {
       try {
         const [machinesRes, typesRes] = await Promise.all([
-          axios.get("api/machines"),
-          axios.get("api/maintenancetype"),
+          axios.get("https://sfl-machinemanagement.vercel.app/api/machines"),
+          axios.get(
+            "https://sfl-machinemanagement.vercel.app/api/maintenancetype"
+          ),
         ]);
         if (machinesRes.data && Array.isArray(machinesRes.data.machines)) {
           setMachineNames(machinesRes.data.machines);
@@ -126,36 +128,39 @@ export function EditMaintenance({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`api/maintenance/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newName,
-          newMtype,
-          newScheduledDate: newScheduledDate
-            ? newScheduledDate.toISOString()
-            : null,
-          newScheduledTime: newScheduledTime
-            ? newScheduledTime.toTimeString().split(" ")[0]
-            : null,
-          newMparts,
-          newTechnicianemail,
-          newDurationStartDate: newDurationStartDate
-            ? newDurationStartDate.toISOString()
-            : null,
-          newDurationEndDate: newDurationEndDate
-            ? newDurationEndDate.toISOString()
-            : null,
-          newDurationStartTime: newDurationStartTime
-            ? newDurationStartTime.toTimeString().split(" ")[0]
-            : null,
-          newDurationEndTime: newDurationEndTime
-            ? newDurationEndTime.toTimeString().split(" ")[0]
-            : null,
-        }),
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/maintenance/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            newName,
+            newMtype,
+            newScheduledDate: newScheduledDate
+              ? newScheduledDate.toISOString()
+              : null,
+            newScheduledTime: newScheduledTime
+              ? newScheduledTime.toTimeString().split(" ")[0]
+              : null,
+            newMparts,
+            newTechnicianemail,
+            newDurationStartDate: newDurationStartDate
+              ? newDurationStartDate.toISOString()
+              : null,
+            newDurationEndDate: newDurationEndDate
+              ? newDurationEndDate.toISOString()
+              : null,
+            newDurationStartTime: newDurationStartTime
+              ? newDurationStartTime.toTimeString().split(" ")[0]
+              : null,
+            newDurationEndTime: newDurationEndTime
+              ? newDurationEndTime.toTimeString().split(" ")[0]
+              : null,
+          }),
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to update");
       } else {

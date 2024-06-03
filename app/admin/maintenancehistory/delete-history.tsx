@@ -18,9 +18,12 @@ export default function DeleteHistory({ id }) {
   const router = useRouter();
   const deleteMaintenance = async () => {
     try {
-      const res = await fetch(`api/maintenance?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/maintenance?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to delete lab type");
       }

@@ -17,13 +17,19 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const userResponse = await axios.get("/api/usercount");
+        const userResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/usercount"
+        );
         setUserCount(userResponse.data.count);
 
-        const machineResponse = await axios.get("/api/machineCount");
+        const machineResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/machineCount"
+        );
         setMachineCount(machineResponse.data.count);
 
-        const bookingResponse = await axios.get("/api/bookingcount");
+        const bookingResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/bookingcount"
+        );
         setBookingCount(bookingResponse.data.count);
       } catch (error) {
         console.error("Error fetching counts:", error);

@@ -18,9 +18,12 @@ export default function CancelBooking({ id }) {
   const router = useRouter();
   const removeBooking = async () => {
     try {
-      const res = await fetch(`api/booking?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/booking?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to cancel booking");
       }

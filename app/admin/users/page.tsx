@@ -4,7 +4,9 @@ import { DataTable } from "./data-table";
 import { NewUser, columns } from "./columns";
 
 async function getData(): Promise<NewUser[]> {
-  const response = await fetch("api/users");
+  const response = await fetch(
+    "https://sfl-machinemanagement.vercel.app/api/users"
+  );
   const data = await response.json();
   return data.users.map((user, index) => ({ ...user, slnumber: index + 1 }));
 }

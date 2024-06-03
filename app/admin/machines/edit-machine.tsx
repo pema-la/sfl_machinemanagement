@@ -48,7 +48,9 @@ export function EditModal({
   useEffect(() => {
     async function fetchLabTypes() {
       try {
-        const response = await fetch(`api/labtype`);
+        const response = await fetch(
+          `https://sfl-machinemanagement.vercel.app/api/labtype`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch lab types");
         }
@@ -64,18 +66,21 @@ export function EditModal({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`api/machines/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newName,
-          newLabtype,
-          newTechnicianemail,
-          newDescription,
-        }),
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/machines/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            newName,
+            newLabtype,
+            newTechnicianemail,
+            newDescription,
+          }),
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to update");
       } else {

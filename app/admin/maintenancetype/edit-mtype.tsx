@@ -37,13 +37,16 @@ export default function EditMaintenanceType({
     e.preventDefault();
 
     try {
-      const res = await fetch(`api/maintenancetype/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ newName, newDescription }),
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/maintenancetype/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ newName, newDescription }),
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to update");
       } else {

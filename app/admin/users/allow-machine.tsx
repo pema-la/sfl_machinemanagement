@@ -19,7 +19,9 @@ export function AllowMachine({ user }) {
   useEffect(() => {
     async function fetchMachines() {
       try {
-        const response = await fetch(`api/machines`);
+        const response = await fetch(
+          `https://sfl-machinemanagement.vercel.app/api/machines`
+        );
         if (response.ok) {
           const data = await response.json();
           const allowedMachines =
@@ -58,20 +60,23 @@ export function AllowMachine({ user }) {
       .filter((machine) => machine.checked)
       .map((machine) => machine._id);
     try {
-      const response = await fetch(`api/allowmachine`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: user.name,
-          email: user.email,
-          cid: user.cid,
-          contact: user.contact,
-          password: user.password,
-          machines: selectedMachineIds,
-        }),
-      });
+      const response = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/allowmachine`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: user.name,
+            email: user.email,
+            cid: user.cid,
+            contact: user.contact,
+            password: user.password,
+            machines: selectedMachineIds,
+          }),
+        }
+      );
 
       if (response.ok) {
         const allowedMachines =

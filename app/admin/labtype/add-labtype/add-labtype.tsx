@@ -45,7 +45,10 @@ export function AddLabtype() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("api/labtype", data);
+      await axios.post(
+        "https://sfl-machinemanagement.vercel.app/api/labtype",
+        data
+      );
       formMethods.reset(); // Clear input fields
       toast.success("Lab type added successfully!");
       setTimeout(() => {

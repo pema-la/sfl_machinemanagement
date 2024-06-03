@@ -15,7 +15,9 @@ export default function Maintenance() {
     async function fetchData() {
       try {
         // Fetch lab types
-        const labTypesResponse = await axios.get("api/labtype");
+        const labTypesResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/labtype"
+        );
         const labTypesData = labTypesResponse.data.labtypes.map(
           (labType) => labType.name
         );
@@ -29,11 +31,15 @@ export default function Maintenance() {
         }
 
         // Fetch machines
-        const machinesResponse = await axios.get("api/machines");
+        const machinesResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/machines"
+        );
         const machines = machinesResponse.data.machines;
 
         // Fetch maintenance records
-        const maintenanceResponse = await axios.get("api/maintenancehistory");
+        const maintenanceResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/maintenancehistory"
+        );
         const maintenanceData = maintenanceResponse.data.maintenance;
 
         // Join maintenance records with machines to get the lab type

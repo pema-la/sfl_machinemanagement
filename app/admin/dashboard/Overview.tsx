@@ -19,11 +19,15 @@ export function Overview() {
     const fetchData = async () => {
       try {
         // Fetch booking data
-        const bookingResponse = await axios.get("/api/booking");
+        const bookingResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/booking"
+        );
         setBookingData(bookingResponse.data.allBookings);
 
         // Fetch machine data
-        const machineResponse = await axios.get("/api/machines");
+        const machineResponse = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/machines"
+        );
         setMachineData(machineResponse.data.machines); // Accessing machines property
       } catch (error) {
         console.error("Error fetching data: ", error);

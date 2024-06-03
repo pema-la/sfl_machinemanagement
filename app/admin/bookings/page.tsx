@@ -56,9 +56,9 @@ export default function AdminMachineBooking() {
       try {
         const [labTypesResponse, machinesResponse, bookingsResponse] =
           await Promise.all([
-            axios.get("api/labtype"),
-            axios.get("api/machines"),
-            axios.get("api/booking"),
+            axios.get("https://sfl-machinemanagement.vercel.app/api/labtype"),
+            axios.get("https://sfl-machinemanagement.vercel.app/api/machines"),
+            axios.get("https://sfl-machinemanagement.vercel.app/api/booking"),
           ]);
 
         const labTypesData = labTypesResponse.data.labtypes.map(

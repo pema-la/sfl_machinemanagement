@@ -34,11 +34,14 @@ const handleCancelBooking = async (id: string) => {
   const token = localStorage.getItem("token");
 
   try {
-    await axios.delete(`api/booking?id=${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await axios.delete(
+      `https://sfl-machinemanagement.vercel.app/api/booking?id=${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     alert("Booking cancelled successfully");
     // Optionally, you can refresh the bookings data here
   } catch (error) {
@@ -214,18 +217,21 @@ const RecentHistory = () => {
       if (session?.email) {
         setEmail(session.email);
         try {
-          const bookingsResponse = await axios.get(`api/booking`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const bookingsResponse = await axios.get(
+            `https://sfl-machinemanagement.vercel.app/api/booking`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           console.log(bookingsResponse.data); // Log the response to verify the data
           const allBookings = bookingsResponse.data.allBookings;
 
           const bookingsWithData = await Promise.all(
             allBookings.map(async (booking) => {
               const machineResponse = await axios.get(
-                `api/machines/${booking.machinesId[0]}` // Assuming each booking has only one machine ID
+                `https://sfl-machinemanagement.vercel.app/api/machines/${booking.machinesId[0]}` // Assuming each booking has only one machine ID
               );
               const machineName = machineResponse.data.machine.name;
               let datePart = ""; // Initialize datePart variable

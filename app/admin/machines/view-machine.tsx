@@ -13,12 +13,15 @@ export function ViewModal({ id, name, labtype, technicianemail, description }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`api/machines/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/machines/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to update");
       } else {

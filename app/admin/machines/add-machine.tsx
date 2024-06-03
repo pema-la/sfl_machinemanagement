@@ -58,7 +58,9 @@ export function AddMachine() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("api/labtype"); // Assuming your GET route is /api/labtypes
+        const response = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/labtype"
+        ); // Assuming your GET route is /api/labtypes
         setLabTypes(response.data.labtypes); // Assuming the data structure contains an array of lab types
       } catch (error) {
         console.error("Error fetching lab types:", error);
@@ -69,7 +71,10 @@ export function AddMachine() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("api/machines", data); // Assuming your POST route is /api/machine
+      await axios.post(
+        "https://sfl-machinemanagement.vercel.app/api/machines",
+        data
+      ); // Assuming your POST route is /api/machine
       formMethods.reset(); // Clear input fields
       toast.success("Machine added successfully");
       setTimeout(() => {

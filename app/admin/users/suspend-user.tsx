@@ -18,9 +18,12 @@ export default function SuspendUser({ id, status, onUpdate }) {
   const handleSubmit = async () => {
     const updatedStatus = newStatus === "Approved" ? "Suspended" : "Approved";
     try {
-      const res = await axios.put(`api/suspenduser/${id}`, {
-        newStatus: updatedStatus,
-      });
+      const res = await axios.put(
+        `https://sfl-machinemanagement.vercel.app/api/suspenduser/${id}`,
+        {
+          newStatus: updatedStatus,
+        }
+      );
       if (res.status === 200) {
         const updatedMachine = res.data.machine;
         setNewStatus(updatedMachine.status);

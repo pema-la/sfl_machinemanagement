@@ -20,9 +20,12 @@ export default function StatusFail({ id, status, onUpdate }) {
   const handleSubmit = async () => {
     const updatedStatus = "Failed"; // Always set status to "Done"
     try {
-      const res = await axios.put(`/api/doneOrFail/${id}`, {
-        newStatus: updatedStatus,
-      });
+      const res = await axios.put(
+        `https://sfl-machinemanagement.vercel.app/api/doneOrFail/${id}`,
+        {
+          newStatus: updatedStatus,
+        }
+      );
       if (res.status === 200) {
         const updatedMaintenance = res.data.maintenance;
         setNewStatus(updatedMaintenance.status);

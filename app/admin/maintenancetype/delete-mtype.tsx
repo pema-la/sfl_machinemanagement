@@ -11,9 +11,12 @@ export default function DeleteMaintenancetype({ id }) {
 
     if (confirmed) {
       try {
-        const res = await fetch(`api/maintenancetype?id=${id}`, {
-          method: "DELETE",
-        });
+        const res = await fetch(
+          `https://sfl-machinemanagement.vercel.app/api/maintenancetype?id=${id}`,
+          {
+            method: "DELETE",
+          }
+        );
         if (!res.ok) {
           throw new Error("Failed to delete lab type");
         }

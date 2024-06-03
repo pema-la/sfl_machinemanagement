@@ -43,7 +43,10 @@ export function AddMaintenancetype() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("api/maintenancetype", data);
+      await axios.post(
+        "https://sfl-machinemanagement.vercel.app/api/maintenancetype",
+        data
+      );
       formMethods.reset(); // Clear input fields
       toast.success("Maintenance type added successfully");
       setTimeout(() => {

@@ -200,11 +200,14 @@ const MyBookingComponent = () => {
         setEmail(session.email);
         try {
           // Fetch all bookings
-          const bookingsResponse = await axios.get(`api/booking`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const bookingsResponse = await axios.get(
+            `https://sfl-machinemanagement.vercel.app/api/booking`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           console.log(bookingsResponse.data); // Log the response to verify the data
 
           // Extract the allBookings array
@@ -220,7 +223,7 @@ const MyBookingComponent = () => {
             userBookings.map(async (booking) => {
               // Fetch machine details using machine ID
               const machineResponse = await axios.get(
-                `api/machines/${booking.machinesId[0]}` // Assuming each booking has only one machine ID
+                `https://sfl-machinemanagement.vercel.app/api/machines/${booking.machinesId[0]}` // Assuming each booking has only one machine ID
               );
               const machineName = machineResponse.data.machine.name;
 

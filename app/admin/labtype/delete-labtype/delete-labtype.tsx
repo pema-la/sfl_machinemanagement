@@ -18,9 +18,12 @@ export default function DeleteLabtype({ id }) {
   const router = useRouter();
   const removeLabtype = async () => {
     try {
-      const res = await fetch(`api/labtype?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://sfl-machinemanagement.vercel.app/api/labtype?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!res.ok) {
         throw new Error("Failed to delete lab type");
       }

@@ -11,7 +11,9 @@ export default function MaintenanceType() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("api/maintenancetype"); // Assuming your GET route is /api/labtypes
+        const response = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/maintenancetype"
+        ); // Assuming your GET route is /api/labtypes
         const maintenanceTypesData = response.data.maintenancetypes.map(
           (maintenanceType, index) => ({
             ...maintenanceType,

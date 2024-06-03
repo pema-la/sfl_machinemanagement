@@ -42,7 +42,9 @@ export function ScheduleMaintenance() {
   useEffect(() => {
     async function fetchMaintenanceTypes() {
       try {
-        const response = await axios.get("/api/maintenancetype");
+        const response = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/maintenancetype"
+        );
         setMtypes(response.data.maintenancetypes);
       } catch (error) {
         console.error("Error fetching maintenance types:", error);
@@ -54,7 +56,9 @@ export function ScheduleMaintenance() {
   useEffect(() => {
     async function fetchMachineNames() {
       try {
-        const response = await axios.get("/api/machines");
+        const response = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/machines"
+        );
         setMachineNames(response.data.machines);
       } catch (error) {
         console.error("Error fetching machine names:", error);
@@ -81,18 +85,21 @@ export function ScheduleMaintenance() {
     }
 
     try {
-      await axios.post("/api/maintenance", {
-        name,
-        mtype,
-        scheduledDate: scheduledDate.toISOString().split("T")[0],
-        scheduledTime: scheduledTime.toTimeString().split(" ")[0],
-        mparts,
-        technicianemail,
-        durationStartDate: durationStartDate.toISOString().split("T")[0],
-        durationEndDate: durationEndDate.toISOString().split("T")[0],
-        durationStartTime: durationStartTime.toTimeString().split(" ")[0],
-        durationEndTime: durationEndTime.toTimeString().split(" ")[0],
-      });
+      await axios.post(
+        "https://sfl-machinemanagement.vercel.app/api/maintenance",
+        {
+          name,
+          mtype,
+          scheduledDate: scheduledDate.toISOString().split("T")[0],
+          scheduledTime: scheduledTime.toTimeString().split(" ")[0],
+          mparts,
+          technicianemail,
+          durationStartDate: durationStartDate.toISOString().split("T")[0],
+          durationEndDate: durationEndDate.toISOString().split("T")[0],
+          durationStartTime: durationStartTime.toTimeString().split(" ")[0],
+          durationEndTime: durationEndTime.toTimeString().split(" ")[0],
+        }
+      );
       toast.success("Maintenance scheduled successfully!");
       setTimeout(() => {
         window.location.reload(); // Reload the page after showing the toast message

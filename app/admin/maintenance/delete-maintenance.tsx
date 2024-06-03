@@ -26,9 +26,12 @@ const DeleteMaintenance: React.FC<DeleteMaintenanceProps> = ({
 }) => {
   const handleSubmit = async () => {
     try {
-      const res = await axios.put(`/api/deletemaintenance/${id}`, {
-        newStatus: "Yes", // Set deleted status to "Yes"
-      });
+      const res = await axios.put(
+        `https://sfl-machinemanagement.vercel.app/api/deletemaintenance/${id}`,
+        {
+          newStatus: "Yes", // Set deleted status to "Yes"
+        }
+      );
       if (res.status === 200) {
         onUpdate(id, "Yes");
         toast.success("Maintenance deleted successfully!");

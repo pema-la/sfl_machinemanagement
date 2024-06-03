@@ -28,7 +28,9 @@ export function RadialChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("api/machines");
+        const response = await axios.get(
+          "https://sfl-machinemanagement.vercel.app/api/machines"
+        );
         const machines = response.data.machines;
 
         const totalMachines = machines.length;
