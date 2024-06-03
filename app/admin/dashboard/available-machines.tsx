@@ -28,7 +28,7 @@ export function RadialChart() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/machines");
+        const response = await axios.get("api/machines");
         const machines = response.data.machines;
 
         const totalMachines = machines.length;

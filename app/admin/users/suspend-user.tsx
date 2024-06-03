@@ -18,12 +18,9 @@ export default function SuspendUser({ id, status, onUpdate }) {
   const handleSubmit = async () => {
     const updatedStatus = newStatus === "Approved" ? "Suspended" : "Approved";
     try {
-      const res = await axios.put(
-        `http://localhost:3000/api/suspenduser/${id}`,
-        {
-          newStatus: updatedStatus,
-        }
-      );
+      const res = await axios.put(`api/suspenduser/${id}`, {
+        newStatus: updatedStatus,
+      });
       if (res.status === 200) {
         const updatedMachine = res.data.machine;
         setNewStatus(updatedMachine.status);

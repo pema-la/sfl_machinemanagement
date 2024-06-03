@@ -16,9 +16,7 @@ export default function Maintenance() {
     async function fetchData() {
       try {
         // Fetch lab types
-        const labTypesResponse = await axios.get(
-          "http://localhost:3000/api/labtype"
-        );
+        const labTypesResponse = await axios.get("api/labtype");
         const labTypesData = labTypesResponse.data.labtypes.map(
           (labType) => labType.name
         );
@@ -32,15 +30,11 @@ export default function Maintenance() {
         }
 
         // Fetch machines
-        const machinesResponse = await axios.get(
-          "http://localhost:3000/api/machines"
-        );
+        const machinesResponse = await axios.get("api/machines");
         const machines = machinesResponse.data.machines;
 
         // Fetch maintenance records
-        const maintenanceResponse = await axios.get(
-          "http://localhost:3000/api/maintenance"
-        );
+        const maintenanceResponse = await axios.get("api/maintenance");
         const maintenanceData = maintenanceResponse.data.maintenance;
 
         // Join maintenance records with machines to get the lab type

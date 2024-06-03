@@ -37,7 +37,7 @@ export default function EditLabType({
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:3000/api/labtype/${id}`, {
+      const res = await fetch(`api/labtype/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

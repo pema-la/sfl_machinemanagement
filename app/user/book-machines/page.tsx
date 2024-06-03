@@ -58,7 +58,7 @@ export default function MachineBooking() {
 
   const handleConfirm = async () => {
     try {
-      await axios.post("http://localhost:3000/api/booking", {
+      await axios.post("api/booking", {
         userEmail,
         machinesId: [selectedMachineId],
         bookingDate: selectedDate,
@@ -83,15 +83,13 @@ export default function MachineBooking() {
     const fetchMachineIds = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/allowmachine/email?email=${userEmail}`
+          `api/allowmachine/email?email=${userEmail}`
         );
         const machineIds = response.data.machines;
 
         const machineDetails = await Promise.all(
           machineIds.map(async (id) => {
-            const res = await axios.get(
-              `http://localhost:3000/api/machines/${id}`
-            );
+            const res = await axios.get(`api/machines/${id}`);
             return res.data.machine;
           })
         );
@@ -109,7 +107,7 @@ export default function MachineBooking() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/booking");
+        const res = await axios.get("api/booking");
         setBookingData(res.data.allBookings);
       } catch (error) {
         console.error("Error fetching the booking data", error);
@@ -122,7 +120,7 @@ export default function MachineBooking() {
   useEffect(() => {
     const fetchLabTypes = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/labtype");
+        const res = await axios.get("api/labtype");
         const labTypesData = res.data.labtypes.map((labType) => labType.name);
         const sortedLabTypes = labTypesData.sort((a, b) => a.localeCompare(b));
         setLabTypes(sortedLabTypes);

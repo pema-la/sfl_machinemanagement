@@ -43,7 +43,7 @@ export function AddMaintenancetype() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:3000/api/maintenancetype", data);
+      await axios.post("api/maintenancetype", data);
       formMethods.reset(); // Clear input fields
       toast.success("Maintenance type added successfully");
       setTimeout(() => {

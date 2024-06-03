@@ -12,7 +12,7 @@ export default function DemoPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:3000/api/labtype"); // Assuming your GET route is /api/labtypes
+        const response = await axios.get("api/labtype"); // Assuming your GET route is /api/labtypes
         const labTypesData = response.data.labtypes.map((labType, index) => ({
           ...labType,
           slnumber: index + 1,

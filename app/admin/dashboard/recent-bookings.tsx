@@ -34,7 +34,7 @@ const handleCancelBooking = async (id: string) => {
   const token = localStorage.getItem("token");
 
   try {
-    await axios.delete(`http://localhost:3000/api/booking?id=${id}`, {
+    await axios.delete(`api/booking?id=${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -214,21 +214,18 @@ const RecentHistory = () => {
       if (session?.email) {
         setEmail(session.email);
         try {
-          const bookingsResponse = await axios.get(
-            `http://localhost:3000/api/booking`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const bookingsResponse = await axios.get(`api/booking`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           console.log(bookingsResponse.data); // Log the response to verify the data
           const allBookings = bookingsResponse.data.allBookings;
 
           const bookingsWithData = await Promise.all(
             allBookings.map(async (booking) => {
               const machineResponse = await axios.get(
-                `http://localhost:3000/api/machines/${booking.machinesId[0]}` // Assuming each booking has only one machine ID
+                `api/machines/${booking.machinesId[0]}` // Assuming each booking has only one machine ID
               );
               const machineName = machineResponse.data.machine.name;
               let datePart = ""; // Initialize datePart variable

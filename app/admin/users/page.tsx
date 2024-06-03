@@ -4,7 +4,7 @@ import { DataTable } from "./data-table";
 import { NewUser, columns } from "./columns";
 
 async function getData(): Promise<NewUser[]> {
-  const response = await fetch("http://localhost:3000/api/users"); 
+  const response = await fetch("api/users");
   const data = await response.json();
   return data.users.map((user, index) => ({ ...user, slnumber: index + 1 }));
 }

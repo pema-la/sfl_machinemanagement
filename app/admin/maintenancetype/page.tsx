@@ -11,9 +11,7 @@ export default function MaintenanceType() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/maintenancetype"
-        ); // Assuming your GET route is /api/labtypes
+        const response = await axios.get("api/maintenancetype"); // Assuming your GET route is /api/labtypes
         const maintenanceTypesData = response.data.maintenancetypes.map(
           (maintenanceType, index) => ({
             ...maintenanceType,

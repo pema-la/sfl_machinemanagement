@@ -13,7 +13,7 @@ export function ViewModal({ id, name, labtype, technicianemail, description }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/machines/${id}`, {
+      const res = await fetch(`api/machines/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

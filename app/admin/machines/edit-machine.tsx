@@ -48,7 +48,7 @@ export function EditModal({
   useEffect(() => {
     async function fetchLabTypes() {
       try {
-        const response = await fetch(`http://localhost:3000/api/labtype`);
+        const response = await fetch(`api/labtype`);
         if (!response.ok) {
           throw new Error("Failed to fetch lab types");
         }
@@ -64,7 +64,7 @@ export function EditModal({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/machines/${id}`, {
+      const res = await fetch(`api/machines/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

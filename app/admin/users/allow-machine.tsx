@@ -1,134 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogFooter,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-// } from "@/components/ui/dialog";
-// import { Separator } from "@/components/ui/separator";
-// import { BsPlusCircle } from "react-icons/bs";
-// import { toast } from "react-toastify";
-
-// export function AllowMachine({ user }) {
-//   const [machines, setMachines] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     async function fetchMachines() {
-//       try {
-//         const response = await fetch(`http://localhost:3000/api/machines`);
-//         if (response.ok) {
-//           const data = await response.json();
-//           const machinesWithCheck = data.machines.map((machine) => ({
-//             ...machine,
-//             checked: user.machines && user.machines.includes(machine._id),
-//           }));
-//           setMachines(machinesWithCheck);
-//         } else {
-//           console.error("Failed to fetch machines");
-//         }
-//       } catch (error) {
-//         console.error("Failed to fetch machines:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     }
-
-//     fetchMachines();
-//   }, []);
-
-//   const handleCheckboxChange = (machineId) => {
-//     setMachines((prevMachines) =>
-//       prevMachines.map((machine) =>
-//         machine._id === machineId
-//           ? { ...machine, checked: !machine.checked }
-//           : machine
-//       )
-//     );
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const selectedMachineIds = machines
-//       .filter((machine) => machine.checked)
-//       .map((machine) => machine._id);
-//     try {
-//       const response = await fetch(`http://localhost:3000/api/allowmachine`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           name: user.name,
-//           email: user.email,
-//           cid: user.cid,
-//           contact: user.contact,
-//           password: user.password,
-//           machines: selectedMachineIds,
-//         }),
-//       });
-
-//       if (response.ok) {
-//         toast.success("Machine details updated successfully!");
-//         setTimeout(() => {
-//           window.location.reload(); // Reload the page after showing the toast message
-//         }, 2500);
-//       } else {
-//         // Handle error
-//       }
-//     } catch (error) {
-//       // Handle network error
-//     }
-//   };
-
-//   if (loading) {
-//     return <div>Loading machines...</div>;
-//   }
-
-//   return (
-//     <Dialog>
-//       <DialogTrigger asChild>
-//         <button className="bg-[#fff] border p-1 rounded-md border-[#F2D766] hover:bg-[#F2D766]">
-//           <BsPlusCircle className="text-[#F2D766] hover:text-white" size={18} />
-//         </button>
-//       </DialogTrigger>
-//       <DialogContent className="px-10">
-//         <DialogHeader>
-//           <DialogTitle>Allow Machine</DialogTitle>
-//         </DialogHeader>
-//         <Separator />
-//         <form onSubmit={handleSubmit}>
-//           <div className="grid gap-4">
-//             {machines.map((machine) => (
-//               <div key={machine._id} className="flex items-center space-x-2">
-//                 <input
-//                   type="checkbox"
-//                   id={`machine-${machine._id}`}
-//                   checked={machine.checked}
-//                   onChange={() => handleCheckboxChange(machine._id)}
-//                 />
-//                 <label
-//                   htmlFor={`machine-${machine._id}`}
-//                   className="text-sm font-medium leading-none"
-//                 >
-//                   {machine.name}
-//                 </label>
-//               </div>
-//             ))}
-//           </div>
-//           <Separator />
-//           <DialogFooter>
-//             <Button type="submit">Save Changes</Button>
-//           </DialogFooter>
-//         </form>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// }
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -150,7 +19,7 @@ export function AllowMachine({ user }) {
   useEffect(() => {
     async function fetchMachines() {
       try {
-        const response = await fetch(`http://localhost:3000/api/machines`);
+        const response = await fetch(`api/machines`);
         if (response.ok) {
           const data = await response.json();
           const allowedMachines =
@@ -189,7 +58,7 @@ export function AllowMachine({ user }) {
       .filter((machine) => machine.checked)
       .map((machine) => machine._id);
     try {
-      const response = await fetch(`http://localhost:3000/api/allowmachine`, {
+      const response = await fetch(`api/allowmachine`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

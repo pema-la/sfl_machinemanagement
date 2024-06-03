@@ -56,9 +56,9 @@ export default function AdminMachineBooking() {
       try {
         const [labTypesResponse, machinesResponse, bookingsResponse] =
           await Promise.all([
-            axios.get("http://localhost:3000/api/labtype"),
-            axios.get("http://localhost:3000/api/machines"),
-            axios.get("http://localhost:3000/api/booking"),
+            axios.get("api/labtype"),
+            axios.get("api/machines"),
+            axios.get("api/booking"),
           ]);
 
         const labTypesData = labTypesResponse.data.labtypes.map(

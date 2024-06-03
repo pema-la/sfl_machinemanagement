@@ -18,7 +18,7 @@ export default function CancelBooking({ id }) {
   const router = useRouter();
   const removeBooking = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/booking?id=${id}`, {
+      const res = await fetch(`api/booking?id=${id}`, {
         method: "DELETE",
       });
       if (!res.ok) {

@@ -18,7 +18,7 @@ export default function DeleteLabtype({ id }) {
   const router = useRouter();
   const removeLabtype = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/labtype?id=${id}`, {
+      const res = await fetch(`api/labtype?id=${id}`, {
         method: "DELETE",
       });
       if (!res.ok) {

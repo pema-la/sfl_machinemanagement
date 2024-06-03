@@ -100,8 +100,8 @@ export function EditMaintenance({
     async function fetchData() {
       try {
         const [machinesRes, typesRes] = await Promise.all([
-          axios.get("http://localhost:3000/api/machines"),
-          axios.get("http://localhost:3000/api/maintenancetype"),
+          axios.get("api/machines"),
+          axios.get("api/maintenancetype"),
         ]);
         if (machinesRes.data && Array.isArray(machinesRes.data.machines)) {
           setMachineNames(machinesRes.data.machines);
@@ -126,7 +126,7 @@ export function EditMaintenance({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/maintenance/${id}`, {
+      const res = await fetch(`api/maintenance/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

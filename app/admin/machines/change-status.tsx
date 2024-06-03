@@ -17,12 +17,9 @@ export default function ChangeStatus({ id, status, onUpdate }) {
   const handleSubmit = async () => {
     const updatedStatus = newStatus === "Active" ? "Inactive" : "Active";
     try {
-      const res = await axios.put(
-        `http://localhost:3000/api/statusupdate/${id}`,
-        {
-          newStatus: updatedStatus,
-        }
-      );
+      const res = await axios.put(`api/statusupdate/${id}`, {
+        newStatus: updatedStatus,
+      });
       if (res.status === 200) {
         const updatedMachine = res.data.machine;
         setNewStatus(updatedMachine.status);
