@@ -33,7 +33,7 @@ const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
       if (!session) {
         router.push("/login");
       }
-    }, 50000); // Check every 5 seconds
+    }, 300000);
     return () => clearInterval(interval);
   }, [router]);
 
