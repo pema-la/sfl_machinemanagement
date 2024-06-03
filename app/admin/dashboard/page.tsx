@@ -27,6 +27,8 @@ export default function Dashboard() {
         );
         setMachineCount(machineResponse.data.count);
 
+        
+
         const bookingResponse = await axios.get(
           "https://sfl-machinemanagement.vercel.app/api/bookingcount"
         );

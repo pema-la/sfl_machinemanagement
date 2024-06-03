@@ -42,6 +42,10 @@ export default function Maintenance() {
         );
         const maintenanceData = maintenanceResponse.data.maintenance;
 
+        console.log("Lab Types:", sortedLabTypes);
+        console.log("Machines:", machines);
+        console.log("Maintenance Data:", maintenanceData);
+
         // Join maintenance records with machines to get the lab type
         const joinedData = maintenanceData.map((maintenance) => {
           const machine = machines.find(
@@ -52,6 +56,8 @@ export default function Maintenance() {
             labtype: machine ? machine.labtype : "Unknown",
           };
         });
+
+        console.log("Joined Data:", joinedData);
 
         setMaintenance(joinedData);
       } catch (error) {
